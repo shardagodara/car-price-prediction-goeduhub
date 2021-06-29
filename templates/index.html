@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Car_Price_prediction</title>
+    </head>
+    
+<!-- Adding styles like colour, height, width, border to our html page -->
+<style>
+
+
+input[type=text], select {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-weight: bolder;
+}
+
+input[type=submit] {
+  width: 80%;
+  background-color: goldenrod;
+  color:black;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size:100;
+  font-weight: bolder;
+}
+
+
+input[type=submit]:hover {
+  background-color: orangered;
+}
+form{
+    border-radius: 10px;
+    padding-top: 5%;
+    font-weight: bolder;
+}
+div {
+ 
+  border-radius: 5px;
+  margin-left: 35%;
+  width: 30%;
+  
+}
+h1{
+    color: goldenrod;
+    font-size: 40px;
+    font-weight: bolder;
+}
+h3{
+  color: white;
+}
+
+body {
+            
+            background-image: url("static/img/car.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            text-align: center;
+            padding: 0px;
+        }
+       
+</style>
+
+<body>
+
+<h1>Car Price Prediction</h1>
+
+<div>
+ <!-- Html form which will get all the values from user -->
+ <form action="{{ url_for('predict')}}" method="post" style="background-color:#E6E6FA">
+
+<label for="Year">Year of Purchase</label><br>
+<input type="text" id="Year" name="Year" placeholder="Enter year like 2014" required="required"><br>
+<label for="Present_Price">Showroom Price(in lakhs)</label><br>
+<input type="text" id="Present_Price" name="Present_Price" placeholder="Enter Present price in lacs 3.4" required="required"><br>
+<label for="Kms_Driven">Kilometers Drived</label><br>
+<input type="text" id="Kms_Driven" name="Kms_Driven" placeholder="24000" required="required"><br>
+     
+<!-- drop down options are provided for the categorical features -->
+<label for="Owner">No. of owners</label><br>
+<select id="owner" name="Owner">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="3">3</option>
+    </select><br>
+<label for="Fuel_Type_Petrol">Fuel</label><br>
+    <select id="Fuel_Type_Petrol" name="Fuel_Type_Petrol" required="required">
+      <option value="Petrol">petrol</option>
+      <option value="Diesel">diesel</option>
+      <option value="Cng">cng</option>
+    </select><br>
+<label for="Seller_Type_Individual">Owner type</label><br>
+    <select id="Seller_Type_Individual" name="Seller_Type_Individual" required="required">
+      <option value="dealer">dealer</option>
+      <option value="individual">individual</option>
+      </select><br>
+<label for="Transmission_Mannual">Transmission type</label><br>
+    <select id="Transmission_Mannual" name="Transmission_Mannual" required="required">
+      <option value="mannual car">mannual car</option>
+      <option value="automatic car">automatic car</option>
+     </select> <br>
+     
+<!-- submit button -->           
+<input type="submit" value="Calculate Selling Price">
+</form>
+</div>
+    
+<!-- the predicted text -->
+<h3>{{ prediction_text }}</h3>
+
+</body>
+</html>
